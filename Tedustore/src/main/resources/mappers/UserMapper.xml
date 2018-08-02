@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.store.mapper.UserMapper">
+	<!-- 插入用户信息 -->
+	<!-- void insertUser(User user); -->
+	<insert id="insertUser" parameterType="cn.tedu.store.bean.User">
+		insert into
+		t_user(username,password,email,phone,image,gender,created_user,created_time,modified_user,modified_time)
+		values(#{username},#{password},#{email},#{phone},#{image},#{gender},#{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime})
+	</insert>
+	<!-- 字段名映射 -->
+	<resultMap type="cn.tedu.store.bean.User" id="rsUser">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="email" property="email" />
+		<result column="phone" property="phone" />
+		<result column="image" property="image" />
+		<result column="gender" property="gender" />
+		<result column="created_user" property="createdUser" />
+		<result column="created_time" property="createdTime" />
+		<result column="modified_user" property="modifiedUser" />
+		<result column="modified_time" property="modifiedTime" />
+	</resultMap>
+	<!-- 根据用户名查询用户信息 -->
+	<!-- User selectUserByUsername(String username); -->
+	<select id="selectUserByUsername" resultMap="rsUser" >
+		select *
+		from t_user
+		where username=#{username}
+	</select>
+	<!-- 根据邮箱查询用户信息 -->
+	<!-- Integer selectByEmail(String email); -->
+	<select id="selectByEmail" resultType="java.lang.Integer">
+		select count(*)
+		from t_user
+		where email=#{email}
+	</select>
+
+	<!-- 根据电话查询用户信息 -->
+	<!-- Integer selectByEmail(String email); -->
+	<select id="selectByPhone" resultType="java.lang.Integer">
+		select count(*)
+		from t_user
+		where phone=#{phone}
+	</select>
+	<!-- 修改用户信息 -->
+	<!-- 	void updateUser(User user); -->
+	<update id="updateUser" parameterType="cn.tedu.store.bean.User">
+		update t_user 
+		<set>
+			<if test="password!=null">
+				password = #{password},
+			</if>
+			<if test="username!=null">
+				username = #{username},
+			</if>
+			<if test="image!=null">
+				image = #{image},
+			</if>
+			<if test="gender!=null">
+				gender = #{gender},
+			</if>
+			<if test="email!=null">
+				email = #{email},
+			</if>
+			<if test="phone!=null">
+				phone = #{phone}
+			</if>
+		</set> 
+		where 
+				id = #{id}
+	</update>
+	
+	<!-- 根据id查询对应User信息 -->
+	<!-- User selectUserById(Integer id); -->
+	<select id="selectUserById" resultMap="rsUser" >
+		select 
+			*
+		from t_user
+		where id=#{id}
+	</select>
+	<!-- 修改图片 -->
+	<!-- void updateImage(@Param("image") String image,@Param("id") Integer id); -->
+	<update id="updateImage">
+		update t_user
+		set 
+				image = #{image}
+		where 
+				id = #{id}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.store.mapper.DictMapper">
+	<!-- 查询所有省 -->
+	<!-- List<Province> selectProvince(); -->
+	<select id="selectProvince" resultType="cn.tedu.store.bean.Province">
+		select
+			id,province_code provinceCode,province_name provinceName
+		from 
+			t_dict_provinces
+	</select>
+		<!-- 查询所有城市 -->
+	<!-- List<City> selectCity(); -->
+	<select id="selectCity" resultType="cn.tedu.store.bean.City">
+		select
+			id,city_code cityCode,city_name cityName
+		from 
+			t_dict_cities 
+		where 
+			province_code = #{provinceCode}
+	</select>
+		<!-- 查询所有地区 -->
+	<!-- List<Area> selectArea(); -->
+	<select id="selectArea" resultType="cn.tedu.store.bean.Area">
+		select
+			id,area_code areaCode,area_name areaName
+		from 
+			t_dict_areas
+		where 
+			city_code = #{cityCode}
+	</select>
+	
+	<!-- 根据省id查询省名称 -->
+	<!-- String selectProvinceNameByCode(String provinceCode); -->
+	<select id="selectProvinceNameByCode" resultType="java.lang.String">
+		select
+			province_name
+		from 
+			t_dict_provinces
+		where 
+			province_code = #{provinceCode}
+	</select>
+	<!-- 根据市id查询市名称 -->
+	<!-- String selectCityNameByCode(String cityCode); -->
+	<select id="selectCityNameByCode" resultType="java.lang.String">
+		select
+			city_name
+		from 
+			t_dict_cities
+		where 
+			city_code = #{cityCode}
+	</select>
+	<!-- 根据区id查询区名称 -->
+	<!-- String selectAreaNameByCode(String areaCode); -->
+	<select id="selectAreaNameByCode" resultType="java.lang.String">
+		select
+			area_name
+		from 
+			t_dict_areas
+		where 
+			area_code = #{areaCode}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
