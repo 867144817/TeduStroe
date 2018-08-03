@@ -148,7 +148,7 @@
         <p class="none_title">购物车</p>
         <div class="none_top"></div>
         <div class="none_content">
-            <img src="../images/30.png" alt="" class="lf"/>
+            <!-- <img src="../images/30.png" alt="" class="lf"/> -->
             <p class="lf">您的购物车竟然还是空哒( ⊙ o ⊙ )</p>
             <span class="lf">赶快去下单吧！</span>
             <a href="../main/showIndex.do" class="lf">去购物>></a>
@@ -172,20 +172,30 @@
 		}
 	})
 	$("#go-buy").click(function() {
-		window.location.href = "orderConfirm.html";
-	})
-	//$(".del_d").click()
-/* function del(id){
+		var str=[];
+		$('.Each>span').each(function(){
+			if($(this).hasClass('true')){
+				var id=$(this).parent().parent().next().children('.pudc_information').attr('id');
+				str.push(id);
+				
+			}
+		});
 		$.ajax({
-			url:"../",
-			data:"id="+id,
+			url:"../balance/showOrderConfirm.do",
+			data:"",
 			type:"post",
-			dataType:"json",
+			datatype:"json",
 			success:function(obj){
-				console.log(obj);
+				
+			},
+			error:function(){
+				
 			}
 		})
-	} */
+
+		//window.location.href = "../balance/showOrderConfirm.do";
+	})
+
 </script>
 </body>
 </html>

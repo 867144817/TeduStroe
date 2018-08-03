@@ -164,9 +164,11 @@ public class UserController extends BaseController{
 //		System.out.println(username);
 		ResponseResult<Void> rr = new ResponseResult<Void>();
 		pwd = DigestUtils.md5Hex(pwd+salt);
+		System.out.println("username"+username);
+		System.out.println("pwd"+pwd);
 		try {
 			User user = userService.login(username, pwd);
-			//System.out.println(user);
+			System.out.println(user);
 			session.setAttribute("user", user);
 			rr.setState(1);
 			rr.setMessage("成功");

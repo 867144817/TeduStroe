@@ -13,4 +13,5 @@ public interface CartMapper {
 	Integer deleteByBatch(Integer[] ids);
 	void deleteById(Integer id);
 	void updateCart(@Param("num")Integer num,@Param("id")Integer id);
+	List<CartVo> selectBalance(Integer[] ids);
 }

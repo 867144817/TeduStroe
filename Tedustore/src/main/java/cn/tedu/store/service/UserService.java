@@ -55,18 +55,21 @@ public class UserService implements IUserService {
 
 	// 用户名是否重复业务
 	public boolean checkUsername(String username) {
-
+		System.out.println(username);
 		return userMapper.selectUserByUsername(username) != null;
 	}
 
 	// 登陆业务
 	public User login(String username, String password) {
 		User user = userMapper.selectUserByUsername(username);
-		System.out.println("login");
+		
+		System.out.println("user:"+user);
 		if (user == null) {
 			throw new UserNotFoundException("用户名没找到");
 		}
+		System.out.println(password);
 		if (user.getPassword().equals(password)) {
+			System.out.println(user);
 			return user;
 		} else {
 			throw new PasswordNotMatchException("密码错误");

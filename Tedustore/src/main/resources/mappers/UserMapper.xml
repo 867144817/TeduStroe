@@ -30,7 +30,7 @@
 	<select id="selectUserByUsername" resultMap="rsUser" >
 		select *
 		from t_user
-		where username=#{username}
+		where username=#{name}
 	</select>
 	<!-- 根据邮箱查询用户信息 -->
 	<!-- Integer selectByEmail(String email); -->

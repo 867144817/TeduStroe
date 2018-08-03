@@ -19,26 +19,26 @@ public class DemoAop {
 	//bean(userService)表示再userService业务层的方法之前执行
 	@Before("bean(userService)")
 	public void test1() {
-		System.out.println("之前...");
+//		System.out.println("之前...");
 //		System.out.println(new Date().getTime());
 	}
 	//@After最终通知，不管有没有异常都会执行的代码
 	@After("bean(userService)")
 	public void test2() {
-		System.out.println("之后1...");
+//		System.out.println("之后1...");
 //		System.out.println(new Date().getTime());
 	}
 	//@AfterReturning再不发生异常的时候下执行
 	@AfterReturning("bean(userService)")
 	public void test3() {
-		System.out.println("之后2...");
+//		System.out.println("之后2...");
 //		System.out.println(new Date().getTime());
 	}
 	
 	//@AfterReturning再发生异常的时候下执行
 		@AfterThrowing("bean(userService)")
 		public void test4() {
-			System.out.println("发生异常...");
+//			System.out.println("发生异常...");
 //			System.out.println(new Date().getTime());
 		}
 		//环绕通知
