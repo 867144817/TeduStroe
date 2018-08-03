@@ -12,6 +12,7 @@ import cn.tedu.store.mapper.CartMapper;
 import cn.tedu.store.vo.CartVo;
 @Service
 public class CartService implements ICartService{
+	@SuppressWarnings("restriction")
 	@Resource
 	private CartMapper cartMapper;
 	public void addCart(Cart cart) {
