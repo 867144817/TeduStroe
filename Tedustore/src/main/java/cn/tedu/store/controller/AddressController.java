@@ -26,7 +26,7 @@ public class AddressController extends BaseController{
 	//显示修改地址页
 	@RequestMapping("/showAddress.do")
 	public String address(HttpSession session) {
-		List<Address> addresslist = addressService.selectAddressByUid(getId(session));
+		List<Address> addresslist = addressService.selectAddressByUid(getId(session),null);
 		session.setAttribute("address", addresslist);
 //		for (Address address : addresslist) {
 //			System.out.println(address);
@@ -46,14 +46,32 @@ public class AddressController extends BaseController{
 			rr.setState(1);
 			rr.setMessage("保存成功");
 			session.setAttribute("user", userService.getUserById(this.getId(session)));
+			
 		} catch (Exception e) {
 			rr.setState(0);
 			rr.setMessage(e.getMessage());
 			e.printStackTrace();
 		}
-		
 		return rr;
 	}
+	@RequestMapping("/addressmsg.do")
+	@ResponseBody
+	public ResponseResult<List<Address>> addressmsg(HttpSession session,String str){
+		ResponseResult<List<Address>> rr = new ResponseResult<List<Address>>();
+//		System.out.println(address);
+		try {
+			rr.setState(1);
+			rr.setMessage("保存成功");
+			List<Address> addresslist = addressService.selectAddressByUid(getId(session),str);
+			rr.setData(addresslist);
+		} catch (Exception e) {
+			rr.setState(0);
+			rr.setMessage(e.getMessage());
+			e.printStackTrace();
+		}
+		return rr;
+	}
+	
 	@RequestMapping("/update.do")
 	@ResponseBody
 	public ResponseResult<Void> update(Integer id,HttpSession session){
@@ -109,5 +127,4 @@ public class AddressController extends BaseController{
 		}
 		return rr;
 	}
-	
 }

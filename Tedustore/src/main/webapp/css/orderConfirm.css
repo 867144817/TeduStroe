@@ -105,7 +105,7 @@ img{
      width:1000px;
      color: #333;
  }
-#addresId1,#addresId2,#addresId3 {
+#append_address>div {
     margin-top: 10px;
     margin-bottom: 6px;
     width: 1000px;
@@ -113,7 +113,7 @@ img{
     border: 1px solid #ccc;
     border-radius: 3px;
 }
-#addresId1 .address_name,#addresId2 .address_name,#addresId3 .address_name{
+#append_address .address_name{
     color:#fff;
     font-style: normal;
     font-size:14px;
@@ -130,7 +130,7 @@ img{
 .base_select .address_name{
 	background-color: #0AA1ED !important;
 }
-#addresId1 .user_address,#addresId2 .user_address,#addresId3 .user_address{
+#append_address .user_address{
     color:#808080;
     font-family:SimHei;
     font-style: normal;
@@ -140,7 +140,7 @@ img{
     line-height: 36px;
     text-align:center;
 }
-#addresId1 .user_site,#addresId2 .user_site,#addresId3 .user_site{
+#append_address .user_site{
 	color:#808080;
     font-family:SimHei;
     font-style: normal;
@@ -152,7 +152,7 @@ img{
     display: none;
     cursor: pointer;
 }
-#addresId1 .user_editor,#addresId2 .user_editor,#addresId3 .user_editor{
+.user_editor{
 	color:#808080;
     font-family:SimHei;
     font-style: normal;
@@ -331,6 +331,4 @@ img{
 	top: 13px;
 	cursor: pointer;
 }
-#addresId2,#addresId3{
-	display: none;
-}
+

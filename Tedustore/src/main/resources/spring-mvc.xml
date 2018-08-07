@@ -14,8 +14,8 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
-		">
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+		>
 
 
 	<!-- Spring MVC -->
@@ -46,6 +46,7 @@
 			<mvc:mapping path="/user/*.do" />
 			<mvc:mapping path="/cart/*.do" />
 			<mvc:mapping path="/address/*.do" />
+			<mvc:mapping path="/balance/*.do" />
 			<mvc:exclude-mapping path="/user/showLogin.do" />
 			<mvc:exclude-mapping path="/main/showIndex.do" />
 			<mvc:exclude-mapping path="/user/showRegister.do" />

@@ -44,7 +44,7 @@
 			</div>
 			<!--收货人信息填写栏-->
 			<div class="rs_content">
-				<form method="post" action="">
+				<form method="post"  action="">
 					<!--收货人姓名-->
 					<div class="recipients">
 						<span class="red">*</span><span class="kuan">收货人：</span><input
@@ -98,7 +98,7 @@
 							class="lxdh lxdh_title">联系电话</span><span
 							class="operation operation_title">操作</span>
 					</div>
-			<!-- 		<div class="aim_content_one aim_active">
+			<!-- 	<div class="aim_content_one aim_active">
 						<span class="dzmc dzmc_active">办公室</span> <span
 							class="dzxm dzxm_normal">杨洋</span> <span class="dzxq dzxq_normal">北京市海淀区北下关街道中鼎大厦B座331</span>
 						<span class="lxdh lxdh_normal">18435110514</span> <span
@@ -106,36 +106,7 @@
 							class="aco_change">修改</span>|<span class="aco_delete">删除</span>
 						</span> <span class="swmr swmr_normal"></span>
 					</div> -->
-					<c:forEach items="${address }" var="address" varStatus="a">
-						<div class='aim_content_one <c:if test="${address.isDefault==1 }">aim_active</c:if>'>
-					<%-- <c:if test="${address.isDefault }">aim_active</c:if> --%>
-							<span class='dzmc dzmc_active
-							 <c:choose>
-								<c:when test="${address.isDefault==1}">
-								dzmc_active
-								</c:when>
-								<c:otherwise>
-								dzmc_normal
-								</c:otherwise>
-							</c:choose> 
-							'>${address.recvTag }</span> 
-							<span class="dzxm dzxm_normal">${address.recvUsername }</span> 
-							<span class="dzxq dzxq_normal">${address.recvDistrict }</span> 
-							<span class="lxdh lxdh_normal">${address.recvPhone }</span> 
-							<span class="operation operation_normal"> 
-								<span class="aco_change" onclick="aco_change(${address.id});">修改</span>
-								|
-								<span class="aco_delete">
-									<a href="###" data-id="${address.id }">删除</a>
-								</span>
-							</span>
-							<span class="swmr swmr_normal" >
-							<%-- <c:if test="${address.isDefault }">设为默认</c:if> --%>
-							<c:if test="${address.isDefault!=1 }">设为默认</c:if>
-							</span>
-							<input type="hidden" value="${address.id }"/>
-						</div>
-					</c:forEach>
+					<div  id="append_address"></div>
 				</div>
 			</div>
 		</div>
@@ -167,187 +138,8 @@
 
 		$(".address dt").click();
 	});
-	$(function() {
-		province(-1,-1,-1);
-	})
-	//查找省
-	function province(provinceCode,cityCode,areaCode){
-			$.ajax({
-				url : "../dict/province.do",
-				data : "",
-				type : "post",
-				dataType : "json",
-				success : function(obj) {
-					//console.log(obj.data);
-					if (obj.state == 1) {
-						var province = obj.data;
-						$("#receiverState").html("<option value='0'>---- 选择省 ----</option>");
-						//$("#receiverState").html("");
-						//遍历省
-						for (var i = 0; i < province.length; i++) {
-							$("#receiverState").append(
-									"<option value='"+province[i].provinceCode+"'>"
-											+ province[i].provinceName
-											+ "</option>");
-						}
-						console.log("省份遍历完成")
-						if(provinceCode!=-1){
-							//console.log(provinceCode);
-							$("#receiverState").val(provinceCode);
-						}
-					}
-				}
-			})
-			city(provinceCode,cityCode,areaCode);
-		}
-//查找城市
-		function city(provinceCode,cityCode,areaCode) {
-			$.ajax({
-				url : "../dict/getCity.do",
-				data : {
-					provinceCode:provinceCode
-					/* cityCode:$("#receiverCity").val(),
-					areaCode:$("#receiverDistrict").val() */
-				},
-				type : "post",
-				dataType : "json",
-				success : function(obj) {
-					//console.log(obj.data);
-					if (obj.state == 1) {
-						var city = obj.data;
-						$("#receiverCity").html("<option value='0'>---- 选择市 ----</option>");
-						//$("#receiverCity").html("");
-						//遍历城市
-						for (var i = 0; i < city.length; i++) {
-							$("#receiverCity").append(
-									"<option value='"+city[i].cityCode+"'>"
-											+ city[i].cityName + "</option>");
-						}
-						console.log("城市遍历成功");
-						if(cityCode!=-1){
-							//console.log(cityCode);
-							$("#receiverCity").val(cityCode);
-						}
-					}
-				}
-			})
-			area(cityCode,areaCode);
-		}
 
-	//查找地区
-		function area(cityCode,areaCode) {
-			$.ajax({
-				url : "../dict/getArea.do",
-				data : {
-					/* provinceCode:$("#receiverState").val(), */
-					cityCode:cityCode
-					/* areaCode:$("#receiverDistrict").val() */
-				},
-				type : "post",
-				dataType : "json",
-				success : function(obj) {
-					//console.log(obj.data);
-					if (obj.state == 1) {
-						var area = obj.data;
-						$("#receiverDistrict").html("<option value='0'>---- 选择区 ----</option>");
-						//$("#receiverDistrict").html("");
-						//遍历地区
-						for (var i = 0; i < area.length; i++) {
-							$("#receiverDistrict").append(
-									"<option value='"+area[i].areaCode+"'>"
-											+ area[i].areaName + "</option>");
-						}
-						console.log("地区遍历成功");
-						if(areaCode!=-1){
-							//console.log(areaCode);
-							$("#receiverDistrict").val(areaCode);
-						}
-					}
-				}
-			})
-			
-		}
-	
-	
-	//选择省onchange事件
-	$("#receiverState").change(function() {
-		if ($(this).val() != null) {
-			//调用查找城市方法
-			city($(this).val(),-1,-1);
-		} else {
 
-		}
-	})
-		//选择市onchange事件
-		$("#receiverCity").change(function() {
-			if ($(this).val() != null) {
-				area($(this).val(),-1);
-			} else {
-				$("#receiverDistrict").html("<option value='0'>---- 选择区 ----</option>");
-			}
-		});
-/* //提交新建收货地址信息
-	$(".save_recipient.save").click(function(){
-		submit("../address/saveAddress.do")
-	});
-	//提交修改收货地址信息
-	$(".save_recipient.modify").click(function(){
-		submit("../address/submitModify.do",$(this).data("id"));
-	});
-	
-	function submit(url,id){
-		console.log(id);
-		var nameVal = $("#receiverName").val();
-		var provinceVal = $("#receiverState").val();
-		var cityVal = $("#receiverCity").val();
-		var areaVal = $("#receiverDistrict").val();
-		var provinceText = $("#receiverState").find("option:selected")
-				.text();
-		var cityText = $("#receiverCity").find("option:selected").text();
-		var areaText = $("#receiverDistrict").find("option:selected")
-				.text();
-		var address = $("#receiverAddress").val();
-		var phone = $("#receiverMobile").val();
-		var tel = $("#receiverPhone").val();
-		var zip = $("#receiverZip").val();
-		var addressName = $("#addressName").val();
-		//var falg = true;
-		console.log(address);
-		if (nameVal == "" || phone == ""
-				|| address == ""||provinceVal==0||cityVal==0||areaVal==0) {
-			alert("请将必填信息填写完整");
-			//falg = false;
-		}else {
-			$.ajax({
-				url : url,
-				data : {
-					id:id,
-					recvUsername : nameVal,
-					recvProvinceCode : provinceVal,
-					recvCityCode : cityVal,
-					recvAreaCode : areaVal,
-					recvAddress : address,
-					recvDistrict : provinceText+cityText+areaText+address,
-					recvPhone : phone,
-					recvTel : tel,
-					recvZip: zip,
-					recvTag:addressName
-				},
-				type : "post",
-				dataType : "json",
-				success : function(obj) {
-					if (obj.state == 1) {
-						console.log(obj.message);
-						location='../address/showAddress.do';
-					}else{
-						console.log(obj.message);
-						alert("修改失败");
-						//location='../address/showAddress.do';
-					}
-				}
-			})
-		}
-	} */
 			//修改操作
 			function aco_change(id){
 				$.ajax({
@@ -374,7 +166,24 @@
 					}
 				})
 			}
-			
-			
+			//提交新建收货地址信息
+			$(".save_recipient.save").click(function(){
+				submit("../address/saveAddress.do");
+			});
+			//提交修改收货地址信息
+			$(".save_recipient.modify").click(function(){
+				submit("../address/submitModify.do",$(this).data("id"));
+			});
+			function link_href(){
+				location='../address/showAddress.do';
+			}
+	/**
+	*加载地址和三级联动
+	*/
+	$(function() {
+		province(-1,-1,-1);
+		
+		append_address("2");
+	})
 </script>
 </html>

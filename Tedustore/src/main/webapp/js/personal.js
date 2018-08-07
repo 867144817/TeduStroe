@@ -49,14 +49,7 @@ $("#receiverMobile").blur(function(){
 		alert("请将必填信息填写完整");
 	}
 })*/
-//提交新建收货地址信息
-	$(".save_recipient.save").click(function(){
-		submit("../address/saveAddress.do")
-	});
-	//提交修改收货地址信息
-	$(".save_recipient.modify").click(function(){
-		submit("../address/submitModify.do",$(this).data("id"));
-	});
+
 	
 	function submit(url,id){
 		console.log(id);
@@ -100,8 +93,16 @@ $("#receiverMobile").blur(function(){
 				dataType : "json",
 				success : function(obj) {
 					if (obj.state == 1) {
-						console.log(obj.message);
-						location='../address/showAddress.do';
+						console.log(obj);
+						append_address("1");
+//						location='../address/showAddress.do';
+						link_href();
+						$("#receiverName").val("");
+						$("#receiverAddress").val("");
+						$("#receiverMobile").val("");
+						$("#receiverPhone").val("");
+						 $("#addressName").val("");
+						
 					}else{
 						console.log(obj.message);
 						alert("修改失败");
@@ -112,24 +113,104 @@ $("#receiverMobile").blur(function(){
 		}
 	}
 
+	function append_address(str3){
+		$.ajax({
+			url : "../address/addressmsg.do",
+			data : "str="+str3,
+			type : "post",
+			datatype : "json",
+			success : function(obj) {
+				var str="";
+				$("#append_address").html("");
+				var list = obj.data;
+//				console.log(list);
+				for (var i = 0; i < list.length; i++) {
+					if(list[i].isDefault==0){
+						if(str3=="1"){
+							var city="";
+							if(list[i].recvCityCode!="市辖区"){
+								city=list[i].recvCityCode;
+							}
+							str = '<div id="" class="base">'
+								+'<i class="address_name">'+list[i].recvUsername+list[i].recvProvinceCode+'</i>'
+								+'<i class="user_address"> '+list[i].recvProvinceCode+' '+city+' '+list[i].recvAreaCode+list[i].recvAddress+' '+list[i].recvPhone+'</i>'
+								+'<i class="user_site rt" onclick="setDefault(this);user_site(this);">设为默认地址</i>'
+								+'<input type="hidden" value="'+list[i].id+'"/>'
+								+'</div>';
+						}else{
+							 str = '<div class="aim_content_one ">'
+								+'<span class="dzmc  dzmc_normal'
+								+'">'+list[i].recvTag+'</span> '
+								+'<span class="dzxm dzxm_normal">'+list[i].recvUsername+'</span> '
+								+'<span class="dzxq dzxq_normal">'+list[i].recvDistrict+'</span> '
+								+'<span class="lxdh lxdh_normal">'+list[i].recvPhone+'</span> '
+								+'<span class="operation operation_normal"> '
+								+'    <span class="aco_change" onclick="aco_change('+list[i].id+');">修改</span> | '
+								+'    <span class="aco_delete">'
+								+'        <a href="###" onclick="address_del('+list[i].id+')">删除</a>'
+								+'    </span>'
+								+'</span>'
+								+'<span class="swmr swmr_normal" onclick="setDefault(this)">'
+								+'设为默认'
+								+'</span>'
+								+'<input type="hidden" value="'+list[i].id+'"/>'
+								+'</div>';
+						}
+					
+					}else{
+						if(str3=="1"){
+							var city="";
+							if(list[i].recvCityCode!="市辖区"){
+								city=list[i].recvCityCode;
+							}
+							 str = '<div id="" class="base_select">'
+									+'<i class="address_name">'+list[i].recvUsername+list[i].recvProvinceCode+'</i>'
+									+'<i class="user_address"> '+list[i].recvProvinceCode+' '+city+' '+list[i].recvAreaCode+list[i].recvAddress+' '+list[i].recvPhone+'</i>'
+									+'<i class="user_site rt" onclick="setDefault(this);user_site(this);">设为默认地址</i>'
+									+'<input type="hidden" value="'+list[i].id+'"/>'
+									+'</div>';
+						}else{
+							 str = '<div class="aim_content_one aim_active">'
+								+'<span class="dzmc dzmc_active'
+								+'">'+list[i].recvTag+'</span> '
+								+'<span class="dzxm dzxm_normal">'+list[i].recvUsername+'</span> '
+								+'<span class="dzxq dzxq_normal">'+list[i].recvDistrict+'</span> '
+								+'<span class="lxdh lxdh_normal">'+list[i].recvPhone+'</span> '
+								+'<span class="operation operation_normal"> '
+								+'    <span class="aco_change" onclick="aco_change('+list[i].id+');">修改</span> | '
+								+'    <span class="aco_delete">'
+								+'        <a href="###" onclick="address_del('+list[i].id+')">删除</a>'
+								+'    </span>'
+								+'</span>'
+								+'<span class="swmr swmr_normal" onclick="setDefault(this)"></span>'
+								+'<input type="hidden" value="'+list[i].id+'"/>'
+								+'</div>';
+						}
+					}
+//					console.log(str);
+					$("#append_address").append(str);
+					if(str3=="1"){
+						console.log(!$("#more").hasClass("upup"));
+						if(!$("#more").hasClass("upup")){
+							console.log($(".base"));
+							$(".base").hide();
+						}else{
+							
+						}
+					}
+				}
+			},
+			error : function() {
+
+			}
+			
+		})
+		
+	}
 /**
  * 地址设为默认点击事件
  */
-$(function(){
-	$(".swmr_normal").click(function(){
-		setDefault(this);
-		var id = $(this).next().val();
-		$.ajax({
-			url:"../address/update.do",
-			data:"id="+id,
-			type:"post",
-			dataType:"json",
-			success:function(obj){
-				console.log(obj.message);
-			}
-		})
-	})
-})
+
 
 /**
  * 设置默认方法
@@ -145,27 +226,36 @@ function setDefault(e){
 	$(parent).addClass("aim_active");
 	$(parent).children(".dzmc_normal").removeClass("dzmc_normal").addClass("dzmc_active");
 	$(e).html("");
+	var id = $(e).next().val();
+	$.ajax({
+		url:"../address/update.do",
+		data:"id="+id,
+		type:"post",
+		dataType:"json",
+		success:function(obj){
+			console.log(obj.message);
+		}
+	})
 }
 
+/************************删除地址功能************************/
 
-$(function(){
-	$(".aco_delete").click(function(){
-		var falg = confirm("确定删除吗？");
-		//console.log($(this).find("a").data("id"));
-		if(falg){
-			var url = "../address/del.do";
-			var param = $(this).find("a").data("id");
-			//console.log(url);
-			$.post(
-					url,{id:param},
-					function(data){
-				console.log(data);
-			},"json");
-		}
-		
-	})
-})
-
+function address_del(param){
+	var falg = confirm("确定删除吗？");
+	//console.log($(this).find("a").data("id"));
+	if(falg){
+		var url = "../address/del.do";
+//		var param = $(this).find("a").data("id");
+		console.log(url);
+		$.post(
+				url,{id:param},
+				function(data){
+				
+		},"json");
+		append_address();
+//		location.href = '../address/showAddress.do';
+	}
+}
 
 /*****************************************************个人信息管理页面js********************************************************/
 
@@ -223,3 +313,123 @@ $(".change_mail").click(function(){
 	$(parent).children(".ed_email").val(email);
 	$(parent).children(".ed_email").show();
 })
+/**
+ * 三级联动
+ */
+	
+	//查找省
+	function province(provinceCode,cityCode,areaCode){
+			$.ajax({
+				url : "../dict/province.do",
+				data : "",
+				type : "post",
+				dataType : "json",
+				success : function(obj) {
+					//console.log(obj.data);
+					if (obj.state == 1) {
+						var province = obj.data;
+						$("#receiverState").html("<option value='0'>---- 选择省 ----</option>");
+						//$("#receiverState").html("");
+						//遍历省
+						for (var i = 0; i < province.length; i++) {
+							$("#receiverState").append(
+									"<option value='"+province[i].provinceCode+"'>"
+											+ province[i].provinceName
+											+ "</option>");
+						}
+						console.log("省份遍历完成")
+						if(provinceCode!=-1){
+							//console.log(provinceCode);
+							$("#receiverState").val(provinceCode);
+						}
+					}
+				}
+			})
+			city(provinceCode,cityCode,areaCode);
+		}
+//查找城市
+		function city(provinceCode,cityCode,areaCode) {
+			$.ajax({
+				url : "../dict/getCity.do",
+				data : {
+					provinceCode:provinceCode
+					/* cityCode:$("#receiverCity").val(),
+					areaCode:$("#receiverDistrict").val() */
+				},
+				type : "post",
+				dataType : "json",
+				success : function(obj) {
+					//console.log(obj.data);
+					if (obj.state == 1) {
+						var city = obj.data;
+						$("#receiverCity").html("<option value='0'>---- 选择市 ----</option>");
+						//$("#receiverCity").html("");
+						//遍历城市
+						for (var i = 0; i < city.length; i++) {
+							$("#receiverCity").append(
+									"<option value='"+city[i].cityCode+"'>"
+											+ city[i].cityName + "</option>");
+						}
+						console.log("城市遍历成功");
+						if(cityCode!=-1){
+							//console.log(cityCode);
+							$("#receiverCity").val(cityCode);
+						}
+					}
+				}
+			})
+			area(cityCode,areaCode);
+		}
+
+	//查找地区
+		function area(cityCode,areaCode) {
+			$.ajax({
+				url : "../dict/getArea.do",
+				data : {
+					/* provinceCode:$("#receiverState").val(), */
+					cityCode:cityCode
+					/* areaCode:$("#receiverDistrict").val() */
+				},
+				type : "post",
+				dataType : "json",
+				success : function(obj) {
+					//console.log(obj.data);
+					if (obj.state == 1) {
+						var area = obj.data;
+						$("#receiverDistrict").html("<option value='0'>---- 选择区 ----</option>");
+						//$("#receiverDistrict").html("");
+						//遍历地区
+						for (var i = 0; i < area.length; i++) {
+							$("#receiverDistrict").append(
+									"<option value='"+area[i].areaCode+"'>"
+											+ area[i].areaName + "</option>");
+						}
+						console.log("地区遍历成功");
+						if(areaCode!=-1){
+							//console.log(areaCode);
+							$("#receiverDistrict").val(areaCode);
+						}
+					}
+				}
+			})
+			
+		}
+	
+	
+	//选择省onchange事件
+	$("#receiverState").change(function() {
+		if ($(this).val() != null) {
+			//调用查找城市方法
+			city($(this).val(),-1,-1);
+		} else {
+
+		}
+	})
+		//选择市onchange事件
+		$("#receiverCity").change(function() {
+			if ($(this).val() != null) {
+				area($(this).val(),-1);
+			} else {
+				$("#receiverDistrict").html("<option value='0'>---- 选择区 ----</option>");
+			}
+		});

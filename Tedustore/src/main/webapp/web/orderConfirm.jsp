@@ -33,47 +33,14 @@
     <!--收货地址-->
     <div class="adress_choice">
         <p>收货人信息<span class="rt" id="choose">新增收货地址</span></p>
-        <div id="addresId1" class="base_select">
-            <i class="address_name">
-                刘冉北京
-            </i>
-            <i class="user_address">
-                北京市 海淀区 大钟寺123号 139366668888
-            </i>
-            <i class="user_site rt">
-                设为默认地址
-            </i>
-        </div>
-        <div id="addresId2" class="base">
-            <i class="address_name">
-                刘冉北京
-            </i>
-            <i class="user_address">
-                北京市 海淀区 大钟寺123号 139366668888
-            </i>
-        
-            <i class="user_site rt">
-                设为默认地址
-            </i>
-        </div>
-        <div id="addresId3" class="base">
-            <i class="address_name">
-                刘冉北京
-            </i>
-            <i class="user_address">
-                北京市 海淀区 大钟寺123号 139366668888
-            </i>
-          
-            <i class="user_site rt">
-                设为默认地址
-            </i>
-        </div>
+     <div  id="append_address"></div>
+  
         <a id="more" href="javascript:void(0);">
             更多地址 &gt;&gt;
         </a>
     </div>
     <!-- 商品信息-->
-    <form name="" method="post" action="#">
+    <form name="" method="post" action="#" >
         <div class="product_confirm">
             <p>确认商品信息</p>
             <ul class="item_title">
@@ -116,14 +83,15 @@
         <!--收货人信息填写栏-->     
         <div class="rs_content rs_content_1">
         	<p class="cha">×</p>
-        	<form method="post" action="">
+        	<form method="post"  action="" id="address">
 	            <!--收货人姓名-->
 	            <div class="recipients">
 	                <span class="red">*</span><span class="kuan">收货人：</span><input type="text" name="receiverName" id="receiverName"/>
 	            </div>
 	            <!--收货人所在城市等信息-->
-	            <div data-toggle="distpicker" class="address_content">
-					 <span class="red">*</span><span class="kuan">省&nbsp;&nbsp;份：</span><select data-province="---- 选择省 ----" id="receiverState"></select>
+	            <div class="address_content">
+					 <span class="red">*</span><span class="kuan">省&nbsp;&nbsp;份：</span>
+					 <select data-province="---- 选择省 ----" id="receiverState"></select>
 					  城市：<select data-city="---- 选择市 ----" id="receiverCity"></select>
 					  区/县：<select data-district="---- 选择区 ----" id="receiverDistrict"></select>
 				</div> 
@@ -144,7 +112,7 @@
 	                <span class="red">&nbsp;</span class="kuan"><span>地址名称：</span>&nbsp;<input type="text" id="addressName" name="addressName"/>如：<span class="sp">家</span><span class="sp">公司</span><span class="sp">宿舍</span>
 	            </div>
 	            <!--保存收货人信息-->
-	            <div class="save_recipient">
+	            <div class="save_recipient save"  >
 	                保存收货人信息
 	            </div>
 	
@@ -164,14 +132,14 @@
         $(".item_detail").each(function() {
             html+=1;
             var p=parseFloat($(this).children('.p_price').children('.pro_price').children('.ppp_price').html());
-            console.log(p);
+            //console.log(p);
             var sl=parseFloat($(this).children('.p_count').children('span').html());
             var xj=parseFloat(p*sl).toFixed(2);
             console.log("xiaoji"+xj);
             $(this).children('.p_tPrice').children('span').html(xj);
             total+=xj-0;
         })
-        console.log("zongji"+total);
+       // console.log("zongji"+total);
         $("#count").html(html)-0;
         $('.zj').html(total.toFixed(2))-0;
         var input_zj=parseFloat($('.zj').html()).toFixed(2);
@@ -213,6 +181,7 @@
 </script>
 <script src="../js/distpicker.data.js"></script>
 <script src="../js/distpicker.js"></script>
+<script type="text/javascript" src="../js/personal.js"></script>
 <script>
 	$("#choose").click(function(){
 		$(".modal").show();
@@ -223,13 +192,21 @@
 	
 	$("#more").click(function(){
 		if($(this).hasClass("upup")){
-			$("#addresId2").hide();
-			$("#addresId3").hide();
+		/* 	$('#append_address>div').each(function(){
+				if($(this).attr("class")=="base"){
+					$(this).hide();
+				}
+			}) */
+			$(".base").hide();
 			$("#more").html("更多地址>>");
 			$(this).removeClass("upup");
 		}else{
-			$("#addresId2").show();
-			$("#addresId3").show();
+		/* 	$('#append_address>div').each(function(){
+				if($(this).attr("class")=="base"){
+					$(this).show();
+				}
+			}) */
+			$(".base").show();
 			$("#more").html("收起地址>>");
 			$("#more").addClass("upup");
 		}
@@ -237,15 +214,34 @@
 </script>
 <script>
 	$(document).on("mouseover",".base",function(){
+		//console.log(this);
+		$(this).find("i:eq(2)").html("设为默认地址");
 		$(this).find("i:eq(2)").show();
 	})
 	$(document).on("mouseout",".base",function(){
 		$(this).find("i:eq(2)").hide();
 	})
-	$(".user_site").click(function(){
-		$(this).parent().attr("class","base_select");
-		$(this).parent().siblings().attr("class","base");
-		$(this).hide();
+
+	function user_site(t){
+		$(t).parent().attr("class","base_select");
+		$(t).parent().siblings().attr("class","base");
+		$(t).hide();
+	}
+	//提交新建收货地址信息
+	$(".save_recipient.save").click(function(){
+		submit("../address/saveAddress.do");
+	});
+	function link_href(){
+		$(".cha").click();
+		//$("#address").reset();
+		province(-1,-1,-1);
+	}
+	/**
+	*加载地址和三级联动
+	*/
+	$(function() {
+		province(-1,-1,-1);
+		append_address("1");
 	})
 </script>
 </body>

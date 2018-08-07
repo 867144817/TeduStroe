@@ -189,19 +189,21 @@ function adddel(){
 var str=[];
 var totalPrice=0;
 $('.foot_cash').click(function(){
+
+	var str = [];
 	$('.Each>span').each(function(){
 		if($(this).hasClass('true')){
 			var id=$(this).parent().parent().next().children('.pudc_information').attr('id');
-			var num=$(this).parent().parent().siblings('.num').children('input').val();
-			//str.push(id);
+			str.push(parseInt(id));
 		}
 	});
 	totalPrice=$('.susumOne').html();
 	console.log(totalPrice);
 	console.log(str);
 	if(str.length>0){
-		var url = '/CartToOrder.html?itemIds='+str;
-		 window.location.href = url;
+		 var url = '../balance/showOrderConfirm.do?ids='+str;
+		 location= url;
+		 
 	}else{
 		$('.modalBalance').fadeIn();
 		$('.close').click(function(){

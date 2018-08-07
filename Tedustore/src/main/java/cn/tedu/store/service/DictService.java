@@ -15,17 +15,27 @@ import cn.tedu.store.mapper.DictMapper;
 public class DictService implements IDictService{
 	@Resource
 	private DictMapper dictMapper;
-	//获取省
+	//获取所有省
 	public List<Province> getProvince(){
 		
 		return dictMapper.selectProvince();
 	}
-	//获取地区
+	//获取该市所有地区
 	public List<Area> getArea(String cityCode) {
 		return dictMapper.selectArea(cityCode);
 	}
-	//获取城市
+	//获取该省所有城市
 	public List<City> getCity(String provinceCode) {
 		return dictMapper.selectCity(provinceCode);
 	}
+	public String selectProvinceNameByCode(String provinceCode) {
+		return dictMapper.selectProvinceNameByCode(provinceCode);
+	}
+	public String selectCityNameByCode(String cityCode) {
+		return dictMapper.selectCityNameByCode(cityCode);
+	}
+	public String selectAreaNameByCode(String areaCode) {
+		return dictMapper.selectAreaNameByCode(areaCode);
+	}
+	
 }

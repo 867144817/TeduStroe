@@ -15,7 +15,7 @@ public interface IAddressService {
 	 * @param uid
 	 * @return
 	 */
-	List<Address> selectAddressByUid(Integer uid);
+	List<Address> selectAddressByUid(Integer uid,String str);
 	/**
 	 * 查询指定收货地址
 	 * @param id

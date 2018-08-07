@@ -25,4 +25,22 @@ public interface IDictService {
 	 */
 	List<City> getCity(String provinceCode);
 	
+	/**
+	 * 根据省id查询省名称
+	 * @param provinceCode
+	 * @return
+	 */
+	String selectProvinceNameByCode(String provinceCode);
+	/**
+	 * 根据市id查询市名称
+	 * @param cityCode
+	 * @return
+	 */
+	String selectCityNameByCode(String cityCode);
+	/**
+	 * 根据区id查询区名称
+	 * @param areaCode
+	 * @return
+	 */
+	String selectAreaNameByCode(String areaCode);
 }

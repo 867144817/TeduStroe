@@ -1,5 +1,6 @@
 package cn.tedu.store.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class AddressService implements IAddressService{
 	private AddressMapper addressMapper;
 	@Resource
 	private UserMapper userMapper;
+	@Resource
+	private IDictService dictService;
 	/*
 	*	 保存用户地址
 	*/
@@ -38,7 +41,7 @@ public class AddressService implements IAddressService{
 				address.setModifiedTime(new Date());
 				address.setModifiedUser(user1.getUsername());
 			}
-			List<Address> addresslist = selectAddressByUid(address.getUid());
+			List<Address> addresslist = selectAddressByUid(address.getUid(),null);
 			address.setIsDefault("1");
 			for (Address address2 : addresslist) {
 				if(address2.getIsDefault().equals("1")) {
@@ -53,8 +56,24 @@ public class AddressService implements IAddressService{
 	/*
 	 * 获取用户收获地址
 	 */
-	public List<Address> selectAddressByUid(Integer uid) {
-		return addressMapper.selectAddressByUid(uid);
+	public List<Address> selectAddressByUid(Integer uid,String str) {
+		List<Address> list = addressMapper.selectAddressByUid(uid);
+		List<Address> list2 = new ArrayList<Address>();
+		if("1".equals(str)){
+			for (Address address : list) {
+				String province = dictService.selectProvinceNameByCode(address.getRecvProvinceCode());
+				String city = dictService.selectCityNameByCode(address.getRecvCityCode());
+				String area = dictService.selectAreaNameByCode(address.getRecvAreaCode());
+				address.setRecvProvinceCode(province);
+				address.setRecvCityCode(city);
+				address.setRecvAreaCode(area);
+				list2.add(address);
+			}
+		}else{
+			list2=list;
+		}
+		
+		return list2;
 	}
 	/*
 	 * 修改默认地址

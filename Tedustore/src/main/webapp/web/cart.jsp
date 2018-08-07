@@ -171,7 +171,7 @@
 			$('.none').show();
 		}
 	})
-	$("#go-buy").click(function() {
+/* 	$("#go-buy").click(function() {
 		var str=[];
 		$('.Each>span').each(function(){
 			if($(this).hasClass('true')){
@@ -180,21 +180,11 @@
 				
 			}
 		});
-		$.ajax({
-			url:"../balance/showOrderConfirm.do",
-			data:"",
-			type:"post",
-			datatype:"json",
-			success:function(obj){
-				
-			},
-			error:function(){
-				
-			}
-		})
+		console.log(str);
+	
 
 		//window.location.href = "../balance/showOrderConfirm.do";
-	})
+	}) */
 
 </script>
 </body>
