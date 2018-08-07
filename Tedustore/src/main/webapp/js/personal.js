@@ -132,7 +132,7 @@ $("#receiverMobile").blur(function(){
 								city=list[i].recvCityCode;
 							}
 							str = '<div id="" class="base">'
-								+'<i class="address_name">'+list[i].recvUsername+list[i].recvProvinceCode+'</i>'
+								+'<i class="address_name">'+list[i].recvUsername+'</i>'
 								+'<i class="user_address"> '+list[i].recvProvinceCode+' '+city+' '+list[i].recvAreaCode+list[i].recvAddress+' '+list[i].recvPhone+'</i>'
 								+'<i class="user_site rt" onclick="setDefault(this);user_site(this);">设为默认地址</i>'
 								+'<input type="hidden" value="'+list[i].id+'"/>'
@@ -164,7 +164,7 @@ $("#receiverMobile").blur(function(){
 								city=list[i].recvCityCode;
 							}
 							 str = '<div id="" class="base_select">'
-									+'<i class="address_name">'+list[i].recvUsername+list[i].recvProvinceCode+'</i>'
+									+'<i class="address_name">'+list[i].recvUsername+'</i>'
 									+'<i class="user_address"> '+list[i].recvProvinceCode+' '+city+' '+list[i].recvAreaCode+list[i].recvAddress+' '+list[i].recvPhone+'</i>'
 									+'<i class="user_site rt" onclick="setDefault(this);user_site(this);">设为默认地址</i>'
 									+'<input type="hidden" value="'+list[i].id+'"/>'
@@ -190,9 +190,9 @@ $("#receiverMobile").blur(function(){
 //					console.log(str);
 					$("#append_address").append(str);
 					if(str3=="1"){
-						console.log(!$("#more").hasClass("upup"));
+//						console.log(!$("#more").hasClass("upup"));
 						if(!$("#more").hasClass("upup")){
-							console.log($(".base"));
+//							console.log($(".base"));
 							$(".base").hide();
 						}else{
 							

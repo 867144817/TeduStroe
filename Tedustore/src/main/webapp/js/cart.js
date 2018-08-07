@@ -209,6 +209,7 @@ $('.foot_cash').click(function(){
 		$('.close').click(function(){
 			$('.modalBalance').fadeOut();
 		})
+		alert("请选择商品");
 	}
 
 })

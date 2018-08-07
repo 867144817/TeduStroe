@@ -9,7 +9,7 @@
 		</div>
 		<div id="top_input" class="lf">
 			<input id="input" type="text" placeholder="请输入您要搜索的内容" /> <a
-				href="search.html" class="rt"><img id="search"
+				href="../goods/search..do" class="rt"><img id="search"
 				src="../images/header/search.png" alt="搜索" /></a>
 		</div>
 		<div class="rt">

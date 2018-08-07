@@ -74,6 +74,28 @@
 				
 			</select>
 			
+<!-- 			<select id="selectLikeTitle" resultType="cn.tedu.store.bean.Goods">
+				select 
+						id,
+						category_id categoryId,
+						item_type itemType,
+						title,
+						sell_point sellPoint,
+						price,
+						num,
+						barcode,
+						image,
+						status,
+						priority,
+						created_user createdUser,
+						created_time createdTime,
+						modified_user modifiedUser,
+						modified_time modifiedTime
+						from t_goods
+				where
+						title like 
+				
+			</select> -->
 </mapper>
 
 

@@ -60,8 +60,7 @@
 	function limit(num) {
 		/* var num = $(".tcdPageCode .current").text();
 		console.log(num); */
-		$
-				.ajax({
+		$.ajax({
 					url : "../goods/showSearch.do",
 					data : "num=" + num,
 					type : "post",

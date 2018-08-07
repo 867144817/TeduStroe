@@ -24,16 +24,16 @@ public class GoodsController {
 	private IGoodsCategoryService goodsCategoryService;
 
 	@RequestMapping("/showSearch.do")
-	public String showSearch(Integer categoryId,ModelMap model) {
-		Integer len = goodsService.selectCount(categoryId);
-		if(len%12==0) {
-			len=(int)Math.ceil(len/12.0);
-		}else {
-			len=len/12+1;
-		}
-		GoodsCategory gc = goodsCategoryService.selectCategoryById(categoryId);
-		model.addAttribute("name", gc);
-		model.addAttribute("len", len);
+	public String showSearch(String msg,ModelMap model) {
+//		Integer len = goodsService.selectCount(categoryId);
+//		if(len%12==0) {
+//			len=(int)Math.ceil(len/12.0);
+//		}else {
+//			len=len/12+1;
+//		}
+//		GoodsCategory gc = goodsCategoryService.selectCategoryById(categoryId);
+//		model.addAttribute("name", gc);
+//		model.addAttribute("len", len);
 		return "search";
 	}
 	@RequestMapping("/limit.do")
