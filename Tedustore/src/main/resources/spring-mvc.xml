@@ -45,7 +45,7 @@
 		<!-- one of the properties available; the maximum file size in bytes -->
 		<property name="maxUploadSize" value="10000000" />
 	</bean>
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/user/*.do" />
 			<mvc:mapping path="/cart/*.do" />
@@ -61,10 +61,10 @@
 			<mvc:exclude-mapping path="/user/reg.do" />
 			<mvc:exclude-mapping path="/user/login.do" />
 			<mvc:exclude-mapping path="/user/showRegister.do" />
-			<!--<mvc:exclude-mapping path="/user/checkUsername.do" /> -->
+			<mvc:exclude-mapping path="/user/checkUsername.do" />
 			<ref bean="accessInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 </beans>
 
 

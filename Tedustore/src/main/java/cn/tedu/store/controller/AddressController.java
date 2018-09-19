@@ -1,14 +1,21 @@
 package cn.tedu.store.controller;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import cn.tedu.store.bean.Address;
 import cn.tedu.store.bean.ResponseResult;
@@ -56,13 +63,14 @@ public class AddressController extends BaseController{
 	}
 	@RequestMapping("/addressmsg.do")
 	@ResponseBody
-	public ResponseResult<List<Address>> addressmsg(HttpSession session,String str){
+	public ResponseResult<List<Address>> addressmsg(HttpSession session,String str,HttpServletResponse response){
 		ResponseResult<List<Address>> rr = new ResponseResult<List<Address>>();
 //		System.out.println(address);
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		try {
 			rr.setState(1);
 			rr.setMessage("保存成功");
-			List<Address> addresslist = addressService.selectAddressByUid(getId(session),str);
+			List<Address> addresslist = addressService.selectAddressByUid(1,str);
 			rr.setData(addresslist);
 		} catch (Exception e) {
 			rr.setState(0);
@@ -70,6 +78,21 @@ public class AddressController extends BaseController{
 			e.printStackTrace();
 		}
 		return rr;
+	}
+//	跨域
+	@RequestMapping(value="/addressmsg2.do",produces={"text/html;charset=UTF-8;","application/json;"})
+	@ResponseBody
+	public String addressmsg2(
+			HttpSession session,
+			String str,
+			HttpServletRequest request,
+			HttpServletResponse response
+			){
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		String callback = request.getParameter("callback");
+		
+		String result = addressService.getJsonPData(callback);
+		return result;
 	}
 	
 	@RequestMapping("/update.do")

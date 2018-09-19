@@ -9,7 +9,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import cn.tedu.store.bean.Address;
+import cn.tedu.store.bean.ResponseResult;
 import cn.tedu.store.bean.User;
 import cn.tedu.store.mapper.AddressMapper;
 import cn.tedu.store.mapper.UserMapper;
@@ -121,6 +124,36 @@ public class AddressService implements IAddressService{
 			address.setModifiedTime(new Date());
 			addressMapper.updateModifyAddress(address);
 		}
+	}
+	public String getJsonPData(String callbackName) {
+	        ObjectMapper mapper = new ObjectMapper();  
+	        ResponseResult<List<Address>> rr = new ResponseResult<List<Address>>();
+	    	try {
+				rr.setState(1);
+				rr.setMessage("保存成功");
+				List<Address> addresslist = this.selectAddressByUid(1,"1");
+				rr.setData(addresslist);
+				String json = mapper.writeValueAsString(rr); 
+		        System.out.println("jsonp回调:"+callbackName);  
+		        System.out.println("jackson解析的字符串:"+json);  
+		        String result = "";  
+		        if(callbackName==null||callbackName==""){  
+		            //普通请求  
+		            result = json;  
+		        }else{  
+		            //jsonp请求,返回的格式是类似于一个函数的字符串形式(前端再执行这个回调来获取数据)  
+		            result = callbackName+"("+json+")";  
+		        }  
+		        System.out.println("最终结果:"+result);  
+		        return result; 
+//				jsonlist = URLEncoder.encode(jsonlist, "UTF-8");
+			} catch (Exception e) {
+				rr.setState(0);
+				rr.setMessage(e.getMessage());
+				e.printStackTrace();
+			}
+	    	   
+		return null;
 	}
 	
 	

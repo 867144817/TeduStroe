@@ -38,4 +38,6 @@ public interface IAddressService {
 	 * @param address
 	 */
 	void updateModifyAddress(Address address);
+	
+	String getJsonPData(String callbackName);
 }
