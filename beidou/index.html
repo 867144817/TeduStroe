@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>生命在线</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="css/jquery.bxslider.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--<link rel="stylesheet" href="css/layout.css">-->
+    <link rel="stylesheet" href="css/css.css">
+    <link href="css/icon/iconfont.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/H-ui.min.css">
+    <link type="text/css" href="css/slider.css" rel="stylesheet" />
+    <link type="text/css" href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/media.css">
+    <style>
+        .carousel-indicators .active {
+            width: 210px;
+            position: relative;
+            top: -10px;
+        }
+
+        .carousel-indicators li {
+            width: 210px;
+            margin: 15px;
+            height: auto;
+            text-indent: 0;
+            border: 0;
+        }
+
+        .carousel-indicators {
+            width: 110%;
+            max-width: 1200px;
+            margin-left: -600px;
+
+        }
+
+        .carousel-indicators li div {
+            padding: 2px;
+            background-color: #f4da4d;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="banner">
+        <div id="carousel-example-generic" class="carousel slide hidden-xs" data-ride="carousel">
+            <div class="container pos-r">
+                <img src="images/index/logo.png" alt="" class="logo">
+            </div>
+            <!-- Indicators -->
+            <ol class="carousel-indicators lh-35 text-center hidden-xs">
+                <li data-target="#carousel-example-generic" class="w210 ml-0 active" data-slide-to="0">
+                    <div class="w210">
+                        <img src="images/index/banner/2.png" alt="">
+                        <p>“野性祁连”国际越野跑</p>
+                    </div>
+                </li>
+                <li data-target="#carousel-example-generic" class="w210" data-slide-to="1">
+                    <div class="w210">
+                        <img src="images/index/banner/3.png" alt="">
+                        <p>2018超级越野大师赛</p>
+                    </div>
+                </li>
+                <li data-target="#carousel-example-generic" class="w210" data-slide-to="2">
+                    <div class="">
+                        <img src="images/index/banner/1.png" alt="">
+                        <p>“野性祁连”国际越野跑</p>
+                    </div>
+                </li>
+                <li data-target="#carousel-example-generic" class="w210" data-slide-to="3">
+                    <div class="">
+                        <img src="images/index/banner/4.png" alt="">
+                        <p>2018超级越野大师赛</p>
+                    </div>
+                </li>
+                <li data-target="#carousel-example-generic" class="w210 mr-0" data-slide-to="4">
+                    <div class="">
+                        <img src="images/index/banner/5.png" alt="">
+                        <p>首届更路簿杯国际帆船赛 </p>
+                    </div>
+                </li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="images/index/banner.jpg" alt="...">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="images/index/banner.jpg" alt="...">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="images/index/banner.jpg" alt="...">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="images/index/banner.jpg" alt="...">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="images/index/banner.jpg" alt="...">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <img src="images/index/banner/left.png" alt="">
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <img src="images/index/banner/right.png" alt="">
+            </a>
+        </div>
+        <div class="img_gallery visible-xs">
+            <img src="images/index/logo.png" class="pos-a w120" alt="">
+            <div class="point">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+            </div>
+            <div class="main_img">
+                <ul>
+                    <li><span class="img_1"></span></li>
+                    <li><span class="img_2"></span></li>
+                    <li><span class="img_3"></span></li>
+                    <li><span class="img_4"></span></li>
+                    <li><span class="img_5"></span></li>
+                </ul>
+                <a href="javascript:;" id="btn_prev">
+                    <!--<img src="images/index/banner/left.png" class="wb100" alt="">-->
+                </a>
+                <a href="javascript:;" id="btn_next">
+                    <!--<img src="images/index/banner/right.png" class="wb100" alt="">-->
+                </a>
+            </div>
+            <div class="img_font hide">
+                <span>img 1/5</span>
+                <span>img 2/5</span>
+                <span>img 3/5</span>
+                <span>img 4/5</span>
+                <span>img 5/5</span>
+            </div>
+        </div>
+    </div>
+    <div class="main1">
+        <!-- -->
+        <div class="content1 mt-50 container">
+            <div class="title text-center">
+                <div class="inline-block f-20">
+                    <strong>合作赛事伙伴</strong>
+                    <span class="title_line inline-block"></span>
+                </div>
+            </div>
+            <div class="row partnet ">
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/1.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/2.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/3.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/4.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/5.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/6.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/7.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/8.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/9.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/10.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/11.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/12.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/13.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/14.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/15.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/16.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/17.png"></div>
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="pater"><img src="images/index/images/18.png"></div>
+                </div>
+            </div>
+        </div>
+        <!-- -->
+        <div class="banner2 mt-50 ">
+            <div class="container">
+                <div class="banner2_content bac-2e f-r c-white f-18 lh-30 mt-60">
+                    <div class="b_box ">
+                        <p class="mt-40">北斗之眼（Eye Of Beidou System，简称EOB 系统）是海聊科技旗下为户外体育运动赛事提供安全保障的大数据指挥系统。</p>
+                        <p class="mt-30">EOB系统由三大平台组成，分别是选手位置监控及应急求救平台、工作人员卫星通讯保障平台、赛事直播平台。</p>
+                        <p class="mt-30">EOB系统可以为定向越野，骑行赛事，徒步赛事，山地越野跑，汽车摩托车拉力赛等户外体育运动赛事提供完整有效的赛事安全保障方案。</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -->
+        <div class="content mt-50 container">
+            <div class="title text-center">
+                <div class="inline-block f-20">
+                    <strong>系统架构</strong>
+                    <span class="title_line inline-block"></span>
+                </div>
+            </div>
+            <div class="text-center">
+                <span>卫星通信</span> <s class="bac-003 h9 w27"></s>
+                <span class="ml-40">公网通信</span> <s class="bac-e04 h9 w27"></s>
+                <span class="ml-40">其他通信</span> <s class="bac-2e2 h9 w27"></s>
+            </div>
+            <div class="wb85 mar-u">
+                <div class="row mt-50">
+                    <div class="col-md-2 col-xs-12 pr-0 pl-0">
+                        <div class=" pb-10 f-14 cl bor-f4 text-center lh-20">
+                            <div class="col-xs-4 mt-10 col-md-12 pl-10 pr-10">
+                                <img src="images/index/content/l_1.png" alt="" class="wb100">
+                                <div class="mt-5">越野跑赛事</div>
+                                <div>(配备便捷北斗设备)</div>
+                            </div>
+                            <div class="col-xs-4 col-md-12 mt-10 pl-10 pr-10">
+                                <img src="images/index/content/l_2.png" alt="" class="wb100">
+                                <div class="mt-5">自行车赛事</div>
+                                <div>(配备便捷北斗设备)</div>
+                            </div>
+                            <div class="col-xs-4 col-md-12 mt-10 pb-5 pl-10 pr-10">
+                                <img src="images/index/content/l_3.png" alt="" class="wb100">
+                                <div class="mt-5">汽车拉力赛事</div>
+                                <div>(配备便捷北斗设备)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10 pl-0 pr-0 col-xs-12">
+                        <img src="images/index/content/right.png" class="wb100 hidden-xs" alt="">
+                        <img src="images/index/content/right_2.jpg" class="wb100 visible-xs" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -->
+        <div class="content2 mt-50 pb-30 pt-1">
+            <div class="title text-center mt-50">
+                <div class="inline-block f-20">
+                    <strong class="c-f4">赛事大数据指挥中心</strong>
+                    <span class="title_line inline-block"></span>
+                </div>
+            </div>
+            <ul class="ul_1 text-center f-16 lh-60 mt-20 pb-30 cl">
+                <a href="">
+                    <li class="">
+                        <div class="bac-f4">
+                            <img src="images/index/content2/1.png" class="wb100" alt="">
+                            <div class="">赛事选手,位置监控</div>
+                        </div>
+                    </li>
+                </a>
+                <a href="">
+                    <li class="">
+                        <div class="bac-f4">
+                            <img src="images/index/content2/2.png" class="wb100" alt="">
+                            <div class="">赛事选手,位置监控</div>
+                        </div>col-md-6 text-center cl pl-0 pr-0
+                    </li>
+                </a>
+                <a href="">
+                    <li class="">
+                        <div class="bac-f4">
+                            <img src="images/index/content2/3.png" class="wb100" alt="">
+                            <div class="">赛事选手,位置监控</div>
+                        </div>
+                    </li>
+                </a>
+                <a href="">
+                    <li class="">
+                        <div class="bac-f4">
+                            <img src="images/index/content2/4.png" class="wb100" alt="">
+                            <div class="">赛事选手,位置监控</div>
+                        </div>
+                    </li>
+                </a>
+                <a href="">
+                    <li class="">
+                        <div class="bac-f4">
+                            <img src="images/index/content2/5.png" class="wb100" alt="">
+                            <div class="">赛事选手,位置监控</div>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+            <div class="mt-50 hidden-xs"></div>
+        </div>
+        <!-- -->
+        <div class="content3 pb-30">
+            <div class="title text-center mt-50">
+                <div class="inline-block f-20">
+                    <strong>赛事直播平台介绍</strong>
+                    <span class="title_line inline-block"></span>
+                </div>
+            </div>
+            <!-- -->
+            <div class="cl container f-16 mt-60">
+                <div class="col-md-6 text-center cl">
+                    <img src="images/index/content3/left.png" class="max-100" alt="">
+                </div>
+                <div class="col-md-6 text-center cl pl-0 pr-0 c3-r">
+                    <div class="col-md-4 col-xs-4">
+                        <img src="images/index/content3/1.png" alt="">
+                        <div class="mt-15">专属的赛事直播系统</div>
+                    </div>
+                    <div class="col-md-4 col-xs-4">
+                        <img src="images/index/content3/2.png" alt="">
+                        <div class="mt-15">支持多平台观看</div>
+                    </div>
+                    <div class="col-md-4 col-xs-4">
+                        <img src="images/index/content3/3.png" alt="">
+                        <div class="mt-15">多渠道精准品牌推广</div>
+                    </div>
+                    <div class="col-md-2 col-xs-2"></div>
+                    <div class="col-md-4 col-xs-4 mt-5">
+                        <img src="images/index/content3/4.png" alt="">
+                        <div class="mt-15">赛况图文直播互动区</div>
+                    </div>
+                    <div class="col-md-4 col-xs-4 mt-5">
+                        <img src="images/index/content3/5.png" alt="">
+                        <div class="mt-15">选手人气排行榜</div>
+                    </div>
+                </div>
+            </div>
+            <div class="title text-center mt-50">
+                <div class="inline-block f-20">
+                    <strong>硬件设备</strong>
+                    <span class="title_line inline-block"></span>
+                </div>
+            </div>
+            <!-- -->
+            <div class="cl cont2 container f-16 mt-15 pb-30">
+                <div class="wb85 mar-u">
+                    <ul>
+                        <li class="bac-fc cl pt-1">
+                            <div class="col-md-6 text-center mt-20 pb-5">
+                                <img src="images/index/content4/left_1.png" alt="">
+                            </div>
+                            <div class="col-md-6 bac-f42 h300 pt-1">
+                                <div class="ml-b1">
+                                    <p class="f-18 mt-30"><strong>北斗卫星定位通信追踪器</strong></p>
+                                    <ul class="ml-10 mt-15 lh-28">
+                                        <li><img src="images/index/content4/images/1.png" class="imgpos1" alt=""><span
+                                                class="ml-10">卫星链路精准追踪</span></li>
+                                        <li><img src="images/index/content4/images/2.png" class="imgpos1" alt=""><span
+                                                class="ml-10">一键SOS</span></li>
+                                        <li><img src="images/index/content4/images/3.png" class="imgpos1" alt=""><span
+                                                class="ml-10">卫星通信</span></li>
+                                        <li><img src="images/index/content4/images/4.png" class="imgpos1" alt=""><span
+                                                class="ml-10">专业级定位精度</span></li>
+                                        <li><img src="images/index/content4/images/5.png" class="imgpos1" alt=""><span
+                                                class="ml-10">超长续航</span></li>
+                                        <li><img src="images/index/content4/images/6.png" class="imgpos1" alt=""><span
+                                                class="ml-10">IP66防水防尘</span></li>
+                                        <li><img src="images/index/content4/images/7.png" class="imgpos1" alt=""><span
+                                                class="ml-10">支持各类赛事定制服务</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="bac-fc cl pt-1 mt-10 ">
+                            <div class="col-md-6 text-center mt-20 pb-5">
+                                <img src="images/index/content4/left_2.png" alt="">
+                            </div>
+                            <div class="col-md-6 bac-f42 h300 pt-1">
+                                <div class="ml-b1">
+                                    <p class="f-18 mt-30"><strong>轻巧精悍的公网（2G)追踪器</strong></p>
+                                    <ul class="ml-10 mt-15 lh-28">
+                                        <li><img src="images/index/content4/images/1.png" class="imgpos1" alt=""><span
+                                                class="ml-10">网络数据链路精准追踪</span></li>
+                                        <li><img src="images/index/content4/images/2.png" class="imgpos1" alt=""><span
+                                                class="ml-10">一键SOS</span></li>
+                                        <li><img src="images/index/content4/images/8.png" class="imgpos1" alt=""><span
+                                                class="ml-10">超轻量化设计</span></li>
+                                        <li><img src="images/index/content4/images/4.png" class="imgpos1" alt=""><span
+                                                class="ml-10">超长续航，智能远程调控</span></li>
+                                        <li><img src="images/index/content4/images/5.png" class="imgpos1" alt=""><span
+                                                class="ml-10">IP67防水防尘</span></li>
+                                        <li><img src="images/index/content4/images/9.png" class="imgpos1" alt=""><span
+                                                class="ml-10">偏离赛道报警</span></li>
+                                        <li><img src="images/index/content4/images/7.png" class="imgpos1" alt=""><span
+                                                class="ml-10">支持赛事定制服务</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="bac-fc cl pt-1 mt-10">
+                            <div class="col-md-6 text-center ">
+                                <img src="images/index/content4/left_3.png" alt="">
+                            </div>
+                            <div class="col-md-6 bac-f42 h250 pt-1">
+                                <div class="ml-b1 pt-10">
+                                    <p class="f-18 mt-60"><strong>海聊欧星卫星电话</strong></p>
+                                    <ul class="ml-10 mt-15 lh-28">
+                                        <li><img src="images/index/content4/images/10.png" class="imgpos1" alt=""><span
+                                                class="ml-10">通话高效稳定</span></li>
+                                        <li><img src="images/index/content4/images/11.png" class="imgpos1" alt=""><span
+                                                class="ml-10">80小时超长待机</span></li>
+                                        <li><img src="images/index/content4/images/12.png" class="imgpos1" alt=""><span
+                                                class="ml-10">超低的卫星通信资费</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-60 hidden-xs"></div>
+        </div>
+        <!---->
+    </div>
+
+    <footer>
+        <div class="bottom pl-10 pr-10 pb-20 pt-1 text-center c-f4 f-16">
+            <div class="title text-center mt-50">
+                <div class="inline-block f-20">
+                    <strong class="c-f4">赛事合作联系</strong>
+                    <span class="title_line inline-block"></span>
+                </div>
+            </div>
+            <div class="hidden-xs f-18 mt-40">
+                <div class="inline-block cl">
+                    <img src="images/index/bottom/images/1.png" class="f-l mt-10" alt="">
+                    <div class="f-l  text-left lh-40 ml-20">
+                        <div>夜鹰</div>
+                        <div>肖子龙</div>
+                    </div>
+                </div>
+                <div class="inline-block cl ml-30">
+                    <img src="images/index/bottom/images/2.png" class="f-l mt-10" alt="">
+                    <div class="f-l  text-left lh-40 ml-20">
+                        <div>13694200959</div>
+                        <div>13694200959</div>
+                    </div>
+                </div>
+                <div class="inline-block cl ml-30">
+                    <img src="images/index/bottom/images/3.png" class="f-l mt-10" alt="">
+                    <div class="f-l  text-left lh-40 ml-20">
+                        <div>249190909@qq.com</div>
+                        <div>249190909@qq.com</div>
+                    </div>
+                </div>
+            </div>
+            <div class="visible-xs f-14 mt-40 text-c">
+                <div>
+                    <span>夜鹰</span>
+                    <span class="ml-10">13694200959</span>
+                    <span class="ml-10">249190909@qq.com</span>
+                </div>
+                <div><span>肖子龙</span><span class="ml-10">13694200959</span><span class="ml-10">249190909@qq.com</span></div>
+            </div>
+            <div class="pb-20 hidden-xs"></div>
+            <div class=" f-20 mt-20">
+                广东海聊信息科技有限公司
+            </div>
+            <div class="mt-20 ">
+                <i class="icon Hui-iconfont-dingwei Hui-iconfont f-24 pos2"></i>广东省佛山市海南区狮山镇南海软件科技园（佛高科技智库中心B2座311室）
+            </div>
+            <div class="mt-10">
+                <img src="images/index/bottom/icon.png" alt="">
+                <a href="http://www.irim.online" class="c-f4">
+                    http://www.irim.online
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="js/jquery.event.drag.js"></script>
+    <script type="text/javascript" src="js/jquery.touchSlider.js"></script>
+    <script type="text/javascript">
+        $dragBln = false;
+
+        $(".main_img").touchSlider({
+            flexible: true,
+            speed: 200,
+            btn_prev: $("#btn_prev"),
+            btn_next: $("#btn_next"),
+            paging: $(".point a"),
+            counter: function (e) {
+                $(".point a").removeClass("on").eq(e.current - 1).addClass("on"); //图片顺序点切换
+                $(".img_font span").hide().eq(e.current - 1).show(); //图片文字切换
+            }
+        });
+
+        $(".main_img").bind("mousedown", function () {
+            $dragBln = false;
+        });
+
+        $(".main_img").bind("dragstart", function () {
+            $dragBln = true;
+        });
+
+        $(".main_img a").click(function () {
+            if ($dragBln) {
+                return false;
+            }
+        });
+
+        timer = setInterval(function () {
+            $("#btn_next").click();
+        }, 5000);
+
+        $(".img_gallery").hover(function () {
+            clearInterval(timer);
+        }, function () {
+            timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+        });
+
+        $(".main_img").bind("touchstart", function () {
+            clearInterval(timer);
+        }).bind("touchend", function () {
+            timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+        });
+    </script>
+</body>
+
+</html>

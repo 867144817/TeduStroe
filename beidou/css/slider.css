@@ -1,0 +1,148 @@
+﻿@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 0;
+}
+
+body {
+    width: 100%;
+    margin: 0 auto;
+    background-size: 100%;
+}
+
+/* main_img */
+.img_gallery {
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    width: 100;
+    margin: 0 auto;
+}
+
+.main_img {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.main_img ul {
+    width: 9999px;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.main_img li {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.main_img li span {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.main_img li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.main_img li .img_1 {
+    background: url('../images/index/banner.jpg') center top no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.main_img li .img_2 {
+    background: url('../images/index/banner.jpg') center top no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.main_img li .img_3 {
+    background: url('../images/index/banner.jpg') center top no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.main_img li .img_4 {
+    background: url('../images/index/banner.jpg') center top no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.main_img li .img_5 {
+    background: url('../images/index/banner.jpg') center top no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.img_font {
+    position: absolute;
+    bottom: 30px;
+    left: 8.5%;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+}
+
+.img_font span {
+    display: none;
+}
+
+div.point {
+    position: absolute;
+    bottom: 33px;
+    left: 50%;
+    z-index: 999;
+    width: 140px;
+    height: 21px;
+    margin: 0 0 0 -50px;
+}
+
+div.point a {
+    float: left;
+    width: 21px;
+    height: 21px;
+    margin: 0;
+    padding: 0;
+    background: url('../img/btn_main_img.png') 0 0 no-repeat;
+    display: block;
+    text-indent: -1000px
+}
+
+div.point a.on {
+    background-position: 0 -21px
+}
+
+#btn_prev, #btn_next {
+    z-index: 11111;
+    position: absolute;
+    display: block;
+    width: 20px !important;
+    height: 40px !important;
+    top: 50%;
+    background-size: 100% 100%;
+    margin-top: -37px;
+}
+
+#btn_prev {
+    background-image: url(../images/index/banner/left.png);
+    left: 4%;
+}
+
+#btn_next {
+    background-image: url(../images/index/banner/right.png);
+    right: 4%;
+}
+
+
+

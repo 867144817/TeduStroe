@@ -1,0 +1,56 @@
+@media (max-width: 768px) {
+    .partnet{
+        width: 100%;
+        margin: 20px auto;
+    }
+    span.ml-40{
+        margin-left: 20px;
+    }
+    .container{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .banner2_content .b_box{
+        width: 90%;
+    }
+    .b_box .mt-40{
+        margin-top: 12%;
+        padding-top: 10px;
+    }
+    .banner2_content{
+        padding: 0 10px;
+        padding-bottom: 10px;
+        font-size: 16px;
+        height: auto;
+        width: 90%;
+        float: none!important;
+        margin: 0 auto;
+    }
+    .ul_1 li{
+        margin-top: 20px;
+        padding: 0 10px;
+        width: 50%;
+    }
+    .cont2 li>div>img{
+        max-width: 100%;
+    }
+    .ml-b1{
+        margin-left: 0;
+    }
+    .cont2 .wb85{
+        width: 95%;
+    }
+    .content .wb85{
+        width: 89%;
+    }
+    .col-md-4.col-xs-4 img{
+        max-width: 100%;
+    }
+    .content .f-14.bor-f4{
+        font-size: 10px;
+        line-height: 15px;
+    }
+    .b_box .mt-30{
+        margin-top: 15px;
+    }
+}
