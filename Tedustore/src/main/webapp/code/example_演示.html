@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>演示</title>
+        <meta charset="UTF-8">   
+        <style>
+            html, body {
+                padding: 0px;
+                margin: 0px;                
+            }            
+            .main {
+                margin: 0px;
+                padding: 0px;
+                position: absolute;
+                top: 0px;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+            }
+        </style>     
+        <script src="./lib/ht.js"></script>   
+        <!-- <script src="./lib/ht-xeditinteractor.js"></script>    -->
+        <script>
+            function init() {
+				//创建数据容器及3d图形组件
+				dm = new ht.DataModel();
+				g3d = new ht.graph3d.Graph3dView(dm);
+				g3d.setGridVisible(true);//是否显示网格
+				g3d.setGridColor('#74AADA');//网格颜色
+				g3d.getView().className = 'main';//必须，否则效果加载不上
+				document.body.appendChild(g3d.getView());//添加组件到浏览器
+				
+				
+
+                //node,设置地板
+				var floor = new ht.Node();
+				floor.setTag('floor');
+                floor.s({
+                    'shape3d': 'rect',//形状
+					// "3d.movable": false,//控制是否支持鼠标拖动
+                    'shape3d.color': 'gray'
+                });
+                floor.p3([0, 5, 0]);//x,y,z
+                floor.s3([1000, 10, 2000]);//x,y,z
+                dm.add(floor);
+				
+				
+				
+				//事件监控
+                g3d.getView().addEventListener('click', function(e){
+                    var data = e;
+                });
+                
+				
+				
+                //俯视
+                g3d.setCenter([0,10,0]);
+                g3d.setEye([0,3000,3000]);
+                
+				
+
+                //shape
+                var shape1 = new ht.Shape();
+                dm.add(shape1);   
+                shape1.setHost(floor);                
+                shape1.setPoints([
+                    {x: 0, y: -100},
+                    {x: -200, y: 100},
+					{x: -100, y: 100},
+					{x: -100, y: 500},
+					{x: 100, y: 500},
+					{x: 100, y: 100},
+                    {x: 200, y: 100}
+                ]); 
+                shape1.setClosePath(true); 
+                shape1.setThickness(100);//thickness>0时，shape为多边行，thickness代表厚度，tall代表高度
+                shape1.setTall(100);
+                shape1.s({
+                    "3d.movable": false,
+                    'all.color': 'rgba(249, 17, 0, 0.9)'
+                });                 
+				shape1.p3(0, 0, 100);
+				shape1.setRotationX(Math.PI*3/4);
+				
+				var shape2 = new ht.Shape();
+                dm.add(shape2);   
+                shape2.setHost(floor);                
+                shape2.setPoints([
+                    {x: 0, y: -100},
+                    {x: -200, y: 100},
+					{x: -100, y: 100},
+					{x: -100, y: 500},
+					{x: 100, y: 500},
+					{x: 100, y: 100},
+                    {x: 200, y: 100}
+                ]); 
+                shape2.setClosePath(true); 
+                shape2.setThickness(-100);//thickness<0时，shape为多边体，thickness无具体意义，tall代表厚度
+                shape2.setTall(100);
+                shape2.s({
+					"3d.movable": false,
+                    'shape3d.color': 'rgba(3, 169, 255, 1)'
+                });                 
+				shape2.p3(0, 0, 80);
+                shape2.setRotationX(Math.PI/4);
+                
+				
+				
+                //Edge
+                var node1 = new ht.Node();
+                dm.add(node1);
+                node1.setHost(floor);
+                node1.p3(-400, 40, -300);
+                node1.s3(50, 80, 50);
+                node1.s({
+                    'shape3d': 'cylinder',
+                    'shape3d.transparent': true,
+                    'shape3d.opacity': 0.8,
+                    'shape3d.reverse.cull': true
+                });
+
+                var node2 = new ht.Node();
+                dm.add(node2);
+                node2.setHost(floor);
+                node2.p3(400, 100, -300);
+                node2.s3(50, 300, 50);
+                node2.s({
+                    'shape3d': 'torus',
+                    'shape3d.transparent': true,
+                    'shape3d.opacity': 0.8,
+                    'shape3d.reverse.cull': true
+                });
+
+                var edge = new ht.Edge(node1, node2);
+                dm.add(edge);
+                edge.s({
+                    'shape3d': 'cylinder',
+                    'shape3d.color': '#72C7FF',
+                    'edge.width': 10,
+                    'edge.type': 'points',
+                    'edge.points': [ //x三维x，y三维z，e三维y                       
+                        {x: -300, y: -300, e: 200},
+                        {x: -300, y: -300, e:0},
+                        {x: 300, y: -300, e: 200}                                          
+                    ]
+                });
+				
+				
+
+                // floor.setRotationZ(Math.PI/2);//旋转，Math.PI为180度
+
+
+                //polyline 
+                var polyline1 = new ht.Polyline();                         
+                polyline1.setPoints([//x三维x，y三维z，e三维y
+                    {x: -500, y: 500, e: 0},
+                    {x: -300, y: 250, e: 200},
+                    {x: 300, y: 750, e: 200},                    
+                    {x: 500, y: 500, e: 0}                    
+                ]); 
+                polyline1.setThickness(10);//'shape3d': 'cylinder'时生效，控制宽度
+                polyline1.setSegments([1, 4]);//设置弧度
+                polyline1.s({
+                    'shape3d': 'cylinder',
+                    'shape3d.color': 'red'
+                }); 
+                dm.add(polyline1);   
+
+                //调度任务
+                rotationTask = {
+                    interval: 50,
+                    action: function(data){
+                        if(data !== floor){
+                            return;
+                        }
+                        floor.setRotation(floor.getRotation() + Math.PI/20);
+                    }        
+                };
+                dm.addScheduleTask(rotationTask); 
+				
+            }
+        </script>
+    </head>
+    <body onload="init();">
+    </body>
+</html>

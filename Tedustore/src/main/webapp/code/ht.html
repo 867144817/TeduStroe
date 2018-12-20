@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>3D Room</title>
+    <meta charset="UTF-8">
+    <style>
+        html,
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .main {
+            margin: 0px;
+            padding: 0px;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+        }
+    </style>
+    <script src="./lib/ht.js"></script>
+    <script>
+    ht.Default.setImage('fab', 300, 64, 'fab/2.png');
+    ht.Default.setImage('colors', 256, 64, 'fab/1.png');
+        function init() {
+            dataModel = new ht.DataModel();
+            g3d = new ht.graph3d.Graph3dView(dataModel);
+
+            // view.className = 'main2';
+            g3d.getView().className = 'main';//必须，否则效果加载不上
+            document.body.appendChild(g3d.getView());//添加组件到浏览器
+
+            // document.body.appendChild(view);
+            g3d.setGridVisible(true);//是否显示网格
+            g3d.setGridColor('#74AADA');//网格颜色
+            // document.body.appendChild(g3d.getView());
+        
+            window.addEventListener('resize', function (e) {
+            	g3d.invalidate();
+            }, false);
+            g3d.getToolTip = function(e){
+                    var data = this.getDataAt(e);
+                    if(data){
+                        return '<pre>' + JSON.stringify(data.getStyleMap(), null, 4) + '</pre>';
+                    }
+                    return null;
+                };
+            // ht.Default.setImage('cloud-all', {
+            //     width: 300,
+            //     height: 300,
+            //     comps: [
+            //         {
+            //             type: 'shape3d',
+            //             points: points,
+            //             segments: segments,
+            //             background: '#d6f0fd',
+            //             gradientColor: '#A6f0fd',
+            //             gradient: 'linear.north',
+            //             opacity: 0.5,
+            //             rotation: Math.PI / 4,
+            //             shadow: true,
+            //             shadowColor: '#E74C3C',
+            //             shadowBlur: 12,
+            //             shadowOffsetX: 6,
+            //             shadowOffsetY: 6
+            //         }
+            //     ]
+            // });
+            // node = new ht.Node();
+            // node.setPosition(400, 110);
+            // node.setSize(200, 200);
+            // node.setImage('cloud-all');
+            // dataModel.add(node);
+            //node,设置地板
+            var floor = new ht.Node();
+            floor.setTag('floor');
+            floor.s({
+                'shape3d': 'rect',//形状
+                // "3d.movable": false,//控制是否支持鼠标拖动
+                'shape3d.color': 'gray'
+            });
+            floor.p3([0, 5, 0]);//x,y,z
+            floor.s3([100, 10, 200]);//x,y,z
+            dataModel.add(floor);
+
+
+            //shape
+            var shape1 = new ht.Node();
+
+            // shape1.setHost(floor);                
+
+            // shape1.setClosePath(true); 
+            // shape1.setThickness(100);//thickness>0时，shape为多边行，thickness代表厚度，tall代表高度
+            // shape1.setTall(100);
+            shape1.s({
+                'shape3d': 'rect',
+                //"3d.movable": false,
+                'shape3d.image': 'colors',
+         /*        'shape3d.top.image': 'colors',
+                'shape3d.bottom.image': 'colors', */
+               /*  'shape3d.top.visible': true,
+                'shape3d.bottom.visible': true, */
+                /* 'shape3d.reverse.flip': true */
+
+            });
+            shape1.p3([100, 5, 0]);
+            shape1.s3([100, 100, 100]);
+            dataModel.add(shape1);
+
+
+            // shape1.setRotationX(Math.PI*3/4);
+            // graphView.setEditable(true);
+
+        }
+
+    </script>
+
+</head>
+
+<body onload="init();">
+
+</body>
+
+</html>

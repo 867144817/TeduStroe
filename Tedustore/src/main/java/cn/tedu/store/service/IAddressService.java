@@ -2,7 +2,10 @@ package cn.tedu.store.service;
 
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import cn.tedu.store.bean.Address;
+import cn.tedu.store.bean.ResponseResult;
 
 public interface IAddressService {
 	/**
@@ -39,5 +42,5 @@ public interface IAddressService {
 	 */
 	void updateModifyAddress(Address address);
 	
-	String getJsonPData(String callbackName);
+	String getJsonPData(String callbackName,ResponseResult rr)throws JsonProcessingException;
 }

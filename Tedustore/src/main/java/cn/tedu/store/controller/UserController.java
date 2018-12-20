@@ -258,7 +258,6 @@ public class UserController extends BaseController{
 		rr.setState(0);
 		rr.setMessage(e.getMessage());
 	}
-		
 		return rr;
 	}
 

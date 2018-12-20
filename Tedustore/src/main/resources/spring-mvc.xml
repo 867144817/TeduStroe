@@ -65,6 +65,19 @@
 			<ref bean="accessInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors> -->
+<!-- 	<mvc:annotation-driven>  
+      <mvc:message-converters>  
+          <bean class="org.springframework.http.converter.StringHttpMessageConverter">  
+              <property name="supportedMediaTypes">  
+                  <list>  
+                   <span style="white-space:pre">   </span>  <value>text/html;charset=UTF-8</value>  
+                      <value>application/json;charset=UTF-8</value>  
+                      <value>*/*;charset=UTF-8</value>  
+                  </list>  
+              </property>  
+          </bean>  
+      </mvc:message-converters>  
+  </mvc:annotation-driven> -->  
 </beans>
 
 
